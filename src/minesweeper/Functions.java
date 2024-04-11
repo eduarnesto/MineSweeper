@@ -45,7 +45,7 @@ public class Functions {
 				// If the condition meets, it means that the tile we are at right now is above,
 				// to the left, to the right or below the tile we chose
 				if ((i + j) % 2 == 1) {
-					if (!(i-1 < I|| i+1 > I))
+					if (!(i-1 < 0|| i+1 > I) && !(j-1 < 0|| j+1 > J))
 					// If there isn't any mines near the tile we change the board tile to O to show
 					// that is clear and we call the function again so the player can keep playing
 					if (boardNumbers[i][j] == 0) {
