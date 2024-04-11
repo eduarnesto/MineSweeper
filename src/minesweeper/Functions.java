@@ -17,24 +17,22 @@ public class Functions {
 	public static void modifyBoard() {
 		for (int i = 0; i < boardNumbers.length; i++) {
 			for (int j = 0; j < boardNumbers[i].length; j++) {
-				if (boardNumbers[i][j] != -1) {
-					if (j > 0 && j < boardNumbers[i].length && boardNumbers[i][j - 1] == -1) {
-						boardNumbers[i][j]++;
-					}
-					if (j >= 0 && j < boardNumbers[i].length - 1 && boardNumbers[i][j + 1] == -1) {
-						boardNumbers[i][j]++;
-					}
-					if (i > 0 && i < boardNumbers.length && boardNumbers[i - 1][j] == -1) {
-						boardNumbers[i][j]++;
-					}
-					if (i >= 0 && i < boardNumbers.length - 1 && boardNumbers[i + 1][j] == -1) {
-						boardNumbers[i][j]++;
-					}
-
+				if (boardNumbers[i][j] == -1) {
+					addOne(i, j);
 				}
-
 			}
 		}
 	}
 
+	public static void addOne(int row, int column) {
+		for (int i = row-1; i <= row+1; i++) {
+			for (int j = column-1; j <= column+1; j++) {
+				if (!(i<0 || i>J) && !(j<0 || j>J) ) {
+					if (boardNumbers[i][j] != -1) {
+						boardNumbers[i][j]++;
+					}
+				}
+			}
+		}
+	}
 }
