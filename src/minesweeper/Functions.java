@@ -1,6 +1,7 @@
 package minesweeper;
 
 public class Functions {
+
 	/**
 	 * Board's line number
 	 */
@@ -32,6 +33,9 @@ public class Functions {
 	 */
 	public static int revealedPositions = 0;
 
+	public static int positionX=0;
+	
+	public static int positionY=0;
 	/**
 	 * Method to clear the path
 	 * 
@@ -58,6 +62,53 @@ public class Functions {
 				}
 			}
 		}
+
+	}
+
+
+
+	public static void showBoard() {
+
+		for (int i = 0; i < board.length; i++) {
+
+			System.out.print("  " + i);
+
+		}
+		System.out.println();
+		for (int i = 0; i < board.length; i++) {
+
+			System.out.print((i) + " ");
+
+			for (int j = 0; j < board[0].length; j++) {
+
+				board[i][j] = 'x';
+
+				System.out.print(board[i][j] + "  ");
+
+			}
+
+			System.out.println();
+
+		}
+	}
+
+	public static boolean checkWin() {
+		boolean win = false;
+
+		if ((I * J) - MINESNUMBER == revealedPositions) {
+			win = true;
+		}
+
+		return win;
+
+	}
+
+	public static boolean checkLose() {
+		boolean loose = false;
+		if (boardNumbers[positionX][positionY] == -1) {
+			loose = true;
+		}
+		return loose;
 
 	}
 
