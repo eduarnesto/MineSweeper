@@ -1,5 +1,6 @@
 package minesweeper;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Functions {
@@ -35,8 +36,14 @@ public class Functions {
 	 */
 	public static int revealedPositions = 0;
 
+	/**
+	 * X position of the player
+	 */
 	public static int positionX = 0;
 
+	/**
+	 * Y position of the player
+	 */
 	public static int positionY = 0;
 
 	/**
@@ -46,22 +53,26 @@ public class Functions {
 	 * @param column Tiles's column
 	 */
 	public static void clearPath(int line, int column) {
+		board[line][column] = 'O';
+		int even = 0;
 		// Loops to go through all the tiles surrounding the tile we chose
-		for (int i = -1; i <= 1; i++) {
-			for (int j = -1; j <= 1; j++) {
+		for (int i = line - 1; i <= line + 1; i++) {
+			for (int j = column - 1; j <= column + 1; j++) {
+				even++;
 				// If the condition meets, it means that the tile we are at right now is above,
 				// to the left, to the right or below the tile we chose
-				if ((i + j) % 2 == 1) {
-					if (!(i - 1 < 0 || i + 1 > I) && !(j - 1 < 0 || j + 1 > J))
+				if (even % 2 == 0) {
+					if (!(i - 1 < 0 || i + 1 > I) && !(j - 1 < 0 || j + 1 > J)) {
 						// If there isn't any mines near the tile we change the board tile to O to show
 						// that is clear and we call the function again so the player can keep playing
-						if (boardNumbers[i][j] == 0) {
-							board[i][j] = 'O';
-							revealedPositions++;
+						if ((boardNumbers[i][j] == 0) && board[i][j] != 'O') {
 							clearPath(i, j);
-						} else if (boardNumbers[i][j] > 0) {
+							revealedPositions++;
+						}
+						if (boardNumbers[i][j] > 0) {
 							board[i][j] = (char) boardNumbers[i][j];
 						}
+					}
 				}
 			}
 		}
@@ -81,8 +92,6 @@ public class Functions {
 			System.out.print((i) + " ");
 
 			for (int j = 0; j < board[0].length; j++) {
-
-				board[i][j] = 'x';
 
 				System.out.print(board[i][j] + "  ");
 
@@ -116,16 +125,7 @@ public class Functions {
 	public static void createBoard() {
 
 		for (int i = 0; i < board.length; i++) {
-			System.out.print("  " + i);
-		}
-		System.out.println();
-		for (int i = 0; i < board.length; i++) {
-			System.out.print((i) + " ");
-			for (int j = 0; j < board[0].length; j++) {
-				board[i][j] = 'x';
-				System.out.print(board[i][j] + "  ");
-			}
-			System.out.println();
+			Arrays.fill(board[i], 'X');
 		}
 	}
 
@@ -142,9 +142,6 @@ public class Functions {
 			} while (boardNumbers[mineI][mineJ] == -1);
 
 			boardNumbers[mineI][mineJ] = -1;
-
-			System.out.println(mineI + " " + mineJ);
-			System.out.println(boardNumbers[mineI][mineJ]);
 		}
 	}
 
