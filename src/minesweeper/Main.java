@@ -39,6 +39,8 @@ public class Main {
 		//
 		Functions.placeMines();
 		
+		Functions.modifyBoard();
+		
 		Functions.clearPath(y, x);
 		
 		do {
