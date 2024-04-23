@@ -70,7 +70,9 @@ public class Functions {
 							revealedPositions++;
 						}
 						if (boardNumbers[i][j] > 0) {
-							board[i][j] = (char) boardNumbers[i][j];
+							//Pasarlo a String y despues a caracter
+							board[i][j] =  boardNumbers[i][j];
+							System.out.println( boardNumbers[i][j]);
 						}
 					}
 				}
@@ -158,7 +160,7 @@ public class Functions {
 	public static void addOne(int row, int column) {
 		for (int i = row - 1; i <= row + 1; i++) {
 			for (int j = column - 1; j <= column + 1; j++) {
-				if (!(i < 0 || i > J) && !(j < 0 || j > J)) {
+				if (!(i < 0 || i >= J) && !(j < 0 || j >= J)) {
 					if (boardNumbers[i][j] != -1) {
 						boardNumbers[i][j]++;
 					}
