@@ -71,7 +71,7 @@ public class Functions {
 						}
 						if (boardNumbers[i][j] > 0) {
 							//Pasarlo a String y despues a caracter
-							board[i][j] =  boardNumbers[i][j];
+							board[i][j] =  String.valueOf(boardNumbers[i][j]).charAt(0);
 							System.out.println( boardNumbers[i][j]);
 						}
 					}

@@ -41,6 +41,13 @@ public class Main {
 		
 		Functions.modifyBoard();
 		
+		for(int fila[] : Functions.boardNumbers) {
+			for(int valor : fila) {
+				System.out.print(valor + "\t");
+			}
+			System.out.println();
+		}
+		
 		Functions.clearPath(y, x);
 		
 		do {
