@@ -63,14 +63,20 @@ public class Main {
 			//
 			y = sc.nextInt();
 			
-			loose = Functions.checkLose();
+			loose = Functions.checkLose(y,x);
 			
 			if (!loose) {
 				win = Functions.checkWin();
 				Functions.clearPath(y, x);
 			}
 			
-		} while(!win || loose);
+		} while(!loose||win);
+		
+		if(win) {
+			System.out.println("Has Ganado");
+		}else {
+			System.out.println("Has Perdido");
+		}
 		
 		sc.close();
 	}

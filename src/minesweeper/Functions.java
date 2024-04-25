@@ -72,7 +72,7 @@ public class Functions {
 						if (boardNumbers[i][j] > 0) {
 							//Pasarlo a String y despues a caracter
 							board[i][j] =  String.valueOf(boardNumbers[i][j]).charAt(0);
-							System.out.println( boardNumbers[i][j]);
+							
 						}
 					}
 				}
@@ -115,9 +115,9 @@ public class Functions {
 
 	}
 
-	public static boolean checkLose() {
+	public static boolean checkLose(int y, int x) {
 		boolean loose = false;
-		if (boardNumbers[positionX][positionY] == -1) {
+		if (boardNumbers[y][x] == -1) {
 			loose = true;
 		}
 		return loose;
