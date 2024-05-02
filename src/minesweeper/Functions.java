@@ -8,12 +8,12 @@ public class Functions {
 	/**
 	 * Board's line number
 	 */
-	public static final int I = 5;
+	public static final int I = 10;
 
 	/**
 	 * Board's column number
 	 */
-	public static final int J = 5;
+	public static final int J = 10;
 
 	/**
 	 * Board that is shown to the player
@@ -34,7 +34,7 @@ public class Functions {
 	/**
 	 * Number of positions that have been reveled
 	 */
-	public static int revealedPositions = 0;
+	public static int revealedPositions = 1;
 
 	/**
 	 * X position of the player
@@ -53,6 +53,9 @@ public class Functions {
 	 * @param column Tiles's column
 	 */
 	public static void clearPath(int line, int column) {
+		if (board[line][column] == 'X' && boardNumbers[line][column] != -1) {
+			revealedPositions++;
+		}
 		board[line][column] = 'O';
 		int even = 0;
 		// Loops to go through all the tiles surrounding the tile we chose
@@ -62,17 +65,16 @@ public class Functions {
 				// If the condition meets, it means that the tile we are at right now is above,
 				// to the left, to the right or below the tile we chose
 				if (even % 2 == 0) {
-					if (!(i - 1 < 0 || i + 1 > I) && !(j - 1 < 0 || j + 1 > J)) {
+					if (!(i - 1 < -1 || i + 1 > I) && !(j - 1 < -1 || j + 1 > J)) {
 						// If there isn't any mines near the tile we change the board tile to O to show
 						// that is clear and we call the function again so the player can keep playing
-						if ((boardNumbers[i][j] == 0) && board[i][j] != 'O') {
+						if ((boardNumbers[i][j] == 0) && board[i][j] == 'X') {
 							clearPath(i, j);
-							revealedPositions++;
 						}
-						if (boardNumbers[i][j] > 0) {
-							//Pasarlo a String y despues a caracter
-							board[i][j] =  String.valueOf(boardNumbers[i][j]).charAt(0);
-							
+						if (boardNumbers[i][j] > 0 && board[i][j] == 'X') {
+							// Pasarlo a String y despues a caracter
+							revealedPositions++;
+							board[i][j] = String.valueOf(boardNumbers[i][j]).charAt(0);
 						}
 					}
 				}
@@ -104,12 +106,41 @@ public class Functions {
 		}
 	}
 
+	public static void showFinalBoard() {
+
+		for (int i = 0; i < board.length; i++) {
+
+			System.out.print("  " + i);
+
+		}
+		System.out.println();
+		for (int i = 0; i < board.length; i++) {
+
+			System.out.print((i) + " ");
+
+			for (int j = 0; j < board[0].length; j++) {
+				if (boardNumbers[i][j] == -1) {
+					System.out.print("💣" + " ");
+				} else {
+					System.out.print(board[i][j] + "  ");
+				}
+
+			}
+
+			System.out.println();
+
+		}
+	}
+
 	public static boolean checkWin() {
 		boolean win = false;
 
-		if ((I * J) - MINESNUMBER == revealedPositions) {
+		if ((I * J) - MINESNUMBER <= revealedPositions) {
 			win = true;
 		}
+
+		System.out.println((I * J) - MINESNUMBER);
+		System.out.println(revealedPositions);
 
 		return win;
 
@@ -120,6 +151,7 @@ public class Functions {
 		if (boardNumbers[y][x] == -1) {
 			loose = true;
 		}
+		System.out.println(loose);
 		return loose;
 
 	}
@@ -136,7 +168,7 @@ public class Functions {
 		int mineI;
 		int mineJ;
 
-		for (int i = 0; i < board.length; i++) {
+		for (int i = 0; i < MINESNUMBER; i++) {
 
 			do {
 				mineI = r.nextInt(0, I);
