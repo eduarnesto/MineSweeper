@@ -139,9 +139,6 @@ public class Functions {
 			win = true;
 		}
 
-		System.out.println((I * J) - MINESNUMBER);
-		System.out.println(revealedPositions);
-
 		return win;
 
 	}
@@ -151,7 +148,6 @@ public class Functions {
 		if (boardNumbers[y][x] == -1) {
 			loose = true;
 		}
-		System.out.println(loose);
 		return loose;
 
 	}
