@@ -68,9 +68,9 @@ public class Main {
 		Functions.showFinalBoard();
 		
 		if(win) {
-			System.out.println("Has Ganado");
+			System.out.println("You have won");
 		}else {
-			System.out.println("Has Perdido");
+			System.out.println("You have lose");
 		}
 		
 		sc.close();

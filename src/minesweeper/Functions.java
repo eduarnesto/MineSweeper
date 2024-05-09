@@ -29,7 +29,7 @@ public class Functions {
 	/**
 	 * Number of mines
 	 */
-	public static final int MINESNUMBER = 5;
+	public static final int MINESNUMBER = 12;
 
 	/**
 	 * Number of positions that have been reveled
